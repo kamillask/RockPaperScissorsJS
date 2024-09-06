@@ -58,18 +58,53 @@ function playRound(humanChoice, computerChoice){
     }
 }
 
-function playGame(){
-    for(let i=0; i<5; i++){
-        const humanSelection = getHumanChoice();
-        const computerSelection = getComputerChoice();
-        console.log(playRound(humanSelection, computerSelection));
-    }
-    if(humanScore>computerScore){
-        console.log("You win! You beat the computer!");
-    } else{
-        console.log("You lose! The computer got the best of you!");
-    }
-}
 
-console.log(playGame());
+const selection = document.querySelector(".options");
+const results = document.querySelector(".results");
+selection.addEventListener("click", (event) => {
+    let target = event.target;
+    const compChoice = getComputerChoice();
+    
+    results.textContent = playRound(target.id, compChoice);
+
+    if(humanScore===5){
+        humanScore = 0;
+        computerScore = 0;
+        alert("You win!");
+        
+    }
+    if(computerScore===5){
+        humanScore = 0;
+        computerScore = 0;
+        alert("You lose!");
+    }
+
+    const youScore = document.querySelector("#you");
+    const compScore = document.querySelector("#computer");
+    youScore.textContent = `You: ${humanScore}`;
+    compScore.textContent = `Computer: ${computerScore}`;
+    
+})
+
+
+
+
+
+
+//PLAYS 5 ROUNDS
+
+// function playGame(){
+//     for(let i=0; i<5; i++){
+//         const humanSelection = getHumanChoice();
+//         const computerSelection = getComputerChoice();
+//         console.log(playRound(humanSelection, computerSelection));
+//     }
+//     if(humanScore>computerScore){
+//         console.log("You win! You beat the computer!");
+//     } else{
+//         console.log("You lose! The computer got the best of you!");
+//     }
+// }
+
+// console.log(playGame());
 
